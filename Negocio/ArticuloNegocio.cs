@@ -107,7 +107,7 @@ namespace Negocio
             
         }
 
-        public void agregar(Articulo nuevo)
+   public void agregar(Articulo nuevo)
         {
             AccesoaDatos datos = new AccesoaDatos();
 

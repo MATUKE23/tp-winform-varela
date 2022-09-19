@@ -63,6 +63,7 @@
             this.txtCodeArt.Name = "txtCodeArt";
             this.txtCodeArt.Size = new System.Drawing.Size(176, 22);
             this.txtCodeArt.TabIndex = 0;
+            this.txtCodeArt.TextChanged += new System.EventHandler(this.txtCodeArt_TextChanged);
             // 
             // TxtNameArt
             // 
@@ -200,7 +201,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(800, 450);
+            this.ClientSize = new System.Drawing.Size(1276, 450);
             this.Controls.Add(this.TxtImagenUrl);
             this.Controls.Add(this.LbImagenUrl);
             this.Controls.Add(this.BtnCancelar);

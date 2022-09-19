@@ -41,7 +41,7 @@ namespace Vista
             cbxCriterio.Text = "";
             cbxCriterio.Items.Clear();
 
-            if (opcion == "Precio" || opcion == "Precio" )
+            if (opcion == "Precio"  )
             {
                 cbxCriterio.Items.Add("Mayor a");
                 cbxCriterio.Items.Add("Menor a");
@@ -55,11 +55,49 @@ namespace Vista
             }
         }
 
+       private bool validarFiltro()
+        {
+            if(cbxCriterio.SelectedIndex < 0)
+            {
+                MessageBox.Show("Por favor, seleccionar primero los campos 'Columna' y 'Criterio'");
+                return true;
+            }
+
+             if(cbxCriterio.SelectedIndex >= 0 && cbxCampo.SelectedItem.ToString() == "Precio" && string.IsNullOrEmpty(textBox1.Text))
+            {
+               // if (string.IsNullOrEmpty(textBox1.ToString()))
+                
+                    MessageBox.Show("Debes cargar algo en el filtro numerico");
+                    return true;
+                
+            }
+
+            if (soloNumeros(textBox1.Text))
+            {
+                MessageBox.Show("Por favor completar el campo Precio solo con numeros");
+                return true;
+            }
+
+            return false;
+        }
+
+        private bool soloNumeros(string cadena)
+        {
+            foreach(char caracter in cadena) { 
+
+            if(!Char.IsNumber(caracter))
+                    return true;
+              }
+            return false;
+        }
+
         private void btnBuscar_Click(object sender, EventArgs e)
         {
             ArticuloNegocio negocio = new ArticuloNegocio();
             try
             {
+                if (validarFiltro()) return; // esto cancela ejecucion del evento
+
                 string campo = cbxCampo.SelectedItem.ToString();
                 string criterio = cbxCriterio.SelectedItem.ToString();
                 string filtro = textBox1.Text;
@@ -115,6 +153,16 @@ namespace Vista
         private void btnCancelar_Click(object sender, EventArgs e)
         {
             Close();
+        }
+
+        private void lblCampo_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void textBox1_TextChanged(object sender, EventArgs e)
+        {
+
         }
     }
 }

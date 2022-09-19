@@ -33,6 +33,67 @@ namespace Vista
             Close();    
         }
 
+
+        private bool validarFiltro()
+        {
+            if (string.IsNullOrEmpty(txtCodeArt.Text))
+            {
+                MessageBox.Show("Por favor completar el campo Codigo de Articulo");
+                return true;
+            }
+
+            if (string.IsNullOrEmpty(TxtNameArt.Text))
+            {
+                MessageBox.Show("Por favor completar el campo Nombre de Articulo");
+                return true;
+            }
+            if (string.IsNullOrEmpty(TxtDesc.Text))
+            {
+                MessageBox.Show("Por favor completar el campo Descripcion de Articulo");
+                return true;
+            }
+            if (string.IsNullOrEmpty(TxtImagenUrl.Text))
+            {
+                MessageBox.Show("Por favor completar el campo Imagen de Articulo");
+                return true;
+            }
+
+            if (string.IsNullOrEmpty(txtPrecio.Text))
+            {
+                MessageBox.Show("Por favor completar el compo Precio");
+                return true;
+            }
+
+
+            if (soloNumeros(txtPrecio.Text) )
+            {
+                MessageBox.Show("Por favor completar el campo Precio solo con numeros");
+                return true;
+            }
+
+            if (soloNumeros(txtCodeArt.Text))
+            {
+                MessageBox.Show("Por favor completar el campo Codigo de articulo solo con numeros");
+                return true;
+            }
+
+
+            return false;
+        }
+
+
+        private bool soloNumeros(string cadena)
+        {
+            foreach (char caracter in cadena)
+            {
+
+                if (!Char.IsNumber(caracter))
+                    return true;
+            }
+            return false;
+        }
+
+       
         private void BtnAceptar_Click(object sender, EventArgs e) // parte de front
         {
             //Articulo nuevoArt = new Articulo();   
@@ -40,16 +101,19 @@ namespace Vista
 
             try
             {//precarga de elementos
-                if(articulo==null) //si apreta aceptar en el form y el art esta null estas por agregar uno nuevo
-                articulo = new Articulo();  
+                if (validarFiltro()) return;
 
-                articulo.codigo = txtCodeArt.Text;
-                articulo.nombre = TxtNameArt.Text;
-                articulo.descripcion = TxtDesc.Text;
-                articulo.imagenUrl = TxtImagenUrl.Text;
-                articulo.marca = (Marca)CboMarca.SelectedItem;//aca capturo el obj completo
-                articulo.categoria= (Categoria)CboCategoria.SelectedItem;
-                articulo.precio = decimal.Parse(txtPrecio.Text);
+                if (articulo == null) //si apreta aceptar en el form y el art esta null estas por agregar uno nuevo
+                {
+                    articulo = new Articulo();
+                    articulo.codigo = txtCodeArt.Text;
+                    articulo.nombre = TxtNameArt.Text;
+                    articulo.descripcion = TxtDesc.Text;
+                    articulo.imagenUrl = TxtImagenUrl.Text;
+                    articulo.marca = (Marca)CboMarca.SelectedItem;//aca capturo el obj completo
+                    articulo.categoria = (Categoria)CboCategoria.SelectedItem;
+                    articulo.precio = decimal.Parse(txtPrecio.Text);
+                }
 
                 if(articulo.id!=0) // si modifico tiene ID
                 {
@@ -146,6 +210,11 @@ namespace Vista
         private void TxtImagenUrl_Leave(object sender, EventArgs e)
         {
             cargarImagen(TxtImagenUrl.Text);
+        }
+
+        private void txtCodeArt_TextChanged(object sender, EventArgs e)
+        {
+
         }
     }
 }

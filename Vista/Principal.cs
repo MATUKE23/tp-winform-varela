@@ -39,8 +39,8 @@ namespace Vista
 
         private void buscarArticuloToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            FormBuscar buscar = new FormBuscar();
-            buscar.ShowDialog();
+           // FormBuscar buscar = new FormBuscar();
+           // buscar.ShowDialog();
         }
 
         private void tESTMOSTRARDATOSToolStripMenuItem_Click(object sender, EventArgs e)
@@ -57,8 +57,20 @@ namespace Vista
 
         private void altaToolStripMenuItem1_Click(object sender, EventArgs e)
         {
+            //FormArticulos MostrarArticulos = new FormArticulos();
+            //MostrarArticulos.ShowDialog();
+        }
+
+        private void accionesToolStripMenuItem_Click(object sender, EventArgs e)
+        {
             FormArticulos MostrarArticulos = new FormArticulos();
             MostrarArticulos.ShowDialog();
+        }
+
+        private void consultasToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            FormBuscar buscar = new FormBuscar();
+            buscar.ShowDialog();
         }
     }
 }
