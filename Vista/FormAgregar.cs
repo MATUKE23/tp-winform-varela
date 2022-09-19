@@ -104,7 +104,7 @@ namespace Vista
                 if (validarFiltro()) return;
 
                 if (articulo == null) //si apreta aceptar en el form y el art esta null estas por agregar uno nuevo
-                {
+                
                     articulo = new Articulo();
                     articulo.codigo = txtCodeArt.Text;
                     articulo.nombre = TxtNameArt.Text;
@@ -113,7 +113,7 @@ namespace Vista
                     articulo.marca = (Marca)CboMarca.SelectedItem;//aca capturo el obj completo
                     articulo.categoria = (Categoria)CboCategoria.SelectedItem;
                     articulo.precio = decimal.Parse(txtPrecio.Text);
-                }
+                
 
                 if(articulo.id!=0) // si modifico tiene ID
                 {
